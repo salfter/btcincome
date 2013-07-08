@@ -113,11 +113,11 @@
   }
  
   // get MtGox bid price
-  $conn=curl_init("https://mtgox.com/api/0/data/ticker.php");
+  $conn=curl_init("https://data.mtgox.com/api/2/BTCUSD/money/ticker");
   curl_setopt($conn, CURLOPT_FOLLOWLOCATION, true);
   curl_setopt($conn, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1");
   curl_setopt($conn, CURLOPT_RETURNTRANSFER, true);
-  $mtgox_bid=json_decode(curl_exec($conn))->ticker->buy;
+  $mtgox_bid=json_decode(curl_exec($conn))->data->buy->value;
   curl_close($conn);  
 
   // calculate daily income data
